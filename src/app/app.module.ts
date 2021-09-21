@@ -13,8 +13,8 @@ import { HeaderComponent } from './header/header.component';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    FooterComponent
-    HeaderComponent
+    FooterComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
