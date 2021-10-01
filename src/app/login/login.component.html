@@ -11,7 +11,7 @@
                       <span class="input-group-text" id="inputGroupPrepend1">
                         <i class="fa fa-user"></i>
                       </span>
-                  <input type="email" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
+                  <input type="email" [(ngModel)] = "username" name = "username" class="form-control form-control-sm" id="exampleInputEmail1" aria-describedby="emailHelp">
                 </div>
             </div>
             <div class="mt-4 mb-4">
@@ -20,11 +20,14 @@
                       <span class="input-group-text" id="inputGroupPrepend2">
                         <i class="fa fa-lock"></i>
                       </span>
-                  <input type="password" class="form-control form-control-sm" id="exampleInputPassword1">
+                  <input type="password" [(ngModel)] = "password" name = "password" class="form-control form-control-sm" id="exampleInputPassword1">
               </div>
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-primary">Login</button>
+              <button type="submit" class="btn btn-primary" (click)="login()">Login</button>
+            </div>
+            <div class="alert alert-info" role="alert">
+              A simple info alert—check it out!
             </div>
           </form>
       </div>
