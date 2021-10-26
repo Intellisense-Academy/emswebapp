@@ -26,8 +26,8 @@
             <div class="text-center">
               <button type="submit" class="btn btn-primary" (click)="login()">Login</button>
             </div>
-            <div class="alert alert-info" role="alert">
-              A simple info alert—check it out!
+            <div class="mt-4 alert alert-info" role="alert" *ngIf = "alertMessage !== ''">
+              {{alertMessage}}
             </div>
           </form>
       </div>

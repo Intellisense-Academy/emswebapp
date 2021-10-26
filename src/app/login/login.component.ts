@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from "../services/login.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -9,14 +10,26 @@ import { LoginService } from "../services/login.service";
 export class LoginComponent implements OnInit {
   username: string = "";
   password: string = "";
+  alertMessage: string = "";
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit(): void {
-
+      this.alertMessage = "";
   }
 
   login() {
-      this.loginService.login(this.username, this.password);
+      if (this.username === '' || this.password === '') {
+          this.alertMessage = "Username/Password cannot be empty";
+      } else {
+          this.loginService.login(this.username, this.password)
+              .subscribe((data: any) => {
+                  this.alertMessage = "";
+                  this.router.navigateByUrl('home');
+              }, (error: any) => {
+                  this.alertMessage = "Username/Password is incorrect";
+              }
+          );
+      }
   }
 }
