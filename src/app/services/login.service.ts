@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Router} from "@angular/router";
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +8,9 @@ import {Router} from "@angular/router";
 export class LoginService {
   private URL: string = "http://localhost:8080/login";
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
 
-  login(username: string, password: string) {
+  login(username: string, password: string): Observable<any> {
       const headers = {
           'Content-type': 'application/json'
       };
@@ -19,13 +19,9 @@ export class LoginService {
           "password" : password
       };
 
-      this.http.post<any>(this.URL, body, {
+      return this.http.post<any>(this.URL, body, {
           headers,
           observe: "response"
-      }).subscribe((data: any) => {
-          this.router.navigateByUrl('home');
-      }, (error: any) => {
-          console.log("Incorrect credentials");
-      })
+      });
   }
 }
